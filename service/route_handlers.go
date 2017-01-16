@@ -63,7 +63,7 @@ func NewProxy(target string) (*Proxy, error) {
 }
 
 func handleRequest(w http.ResponseWriter, r *http.Request) {
-	path, _ := mux.CurrentRoute(r).GetPathTemplate()
+	path := r.URL.Path
 
 	log.Debugf("Request Path matched: %v", path)
 
@@ -85,9 +85,11 @@ func handleRequest(w http.ResponseWriter, r *http.Request) {
 	}
 
 	headerMap := make(map[string][]string)
+	headerMap["url-path"] = path
 	for key, value := range r.Header {
 		headerMap[key] = value
 	}
+
 
 	inputBody, inputHeaders, destination, proxyErr := manager.ProcessPreFilters(path, jsonInput, headerMap)
 	if proxyErr.Status != "" {
