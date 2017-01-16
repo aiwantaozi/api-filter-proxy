@@ -90,7 +90,6 @@ func handleRequest(w http.ResponseWriter, r *http.Request) {
 		headerMap[key] = value
 	}
 
-
 	inputBody, inputHeaders, destination, proxyErr := manager.ProcessPreFilters(path, jsonInput, headerMap)
 	if proxyErr.Status != "" {
 		//error from some filter
