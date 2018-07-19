@@ -1,0 +1,9 @@
+stages:
+- name: build
+  steps:
+  - publishImageConfig:
+      dockerfilePath: ./Dockerfile.dapper
+      buildContext: .
+      tag: pipelinetest
+      pushRemote: true
+      registry: index.docker.io
