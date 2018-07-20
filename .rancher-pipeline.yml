@@ -5,5 +5,5 @@ stages:
       dockerfilePath: ./Dockerfile.dapper
       buildContext: .
       tag: pipelinetest
-      pushRemote: true
+      pushRemote: false
       registry: index.docker.io
